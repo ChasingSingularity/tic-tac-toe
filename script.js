@@ -36,15 +36,33 @@ function play(pChoice) {
             }
         }
     }
-
 };
+let pScore = 0, cScore = 0, score = 0;
+function sBoard(e) {
+    score = play(e);
+    if (score.slice(4, 7) == "Win") {
+        ++pScore;
+        --cScore;
+    } else if (score.slice(4, 8) == "Lose") {
+        --pScore;
+        ++cScore;
+    };
+
+
+    const scoreBoard = document.querySelector('.scoreBoard');
+    scoreBoard.textContent = `Your Score:${pScore} | ${cScore}:Comp Score || ${score}`;
+    if (pScore == 5 || cScore == 5) {
+        if (pScore > cScore) {
+            scoreBoard.textContent = "You win!GAME OVER ";
+        } else { scoreBoard.textContent = 'You lose!Game Over' }
+    }
+};
+
 
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
-        play(button.id);
+        sBoard(button.id);
     });
 });
 
-const scoreBoard = document.querySelector('.scoreBoard');
-scoreBoard.textContent = `Your Score:${} , ${}:Comp Score`
