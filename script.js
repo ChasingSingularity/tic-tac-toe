@@ -47,22 +47,23 @@ function sBoard(e) {
         --pScore;
         ++cScore;
     };
+    let scoreBoard = document.querySelector('.scoreBoard');
 
-
-    const scoreBoard = document.querySelector('.scoreBoard');
-    scoreBoard.textContent = `Your Score:${pScore} | ${cScore}:Comp Score || ${score}`;
-    if (pScore == 5 || cScore == 5) {
+    if (pScore < 5 && cScore < 5) {
+        scoreBoard.textContent = `Your Score:${pScore} | ${cScore}:Comp Score || ${score}`
+    } else if (pScore == 5 || cScore == 5) {
         if (pScore > cScore) {
             scoreBoard.textContent = "You win!GAME OVER ";
-        } else { scoreBoard.textContent = 'You lose!Game Over' }
+        } else {
+            scoreBoard.textContent = 'You lose!Game Over';
+        }
     }
 };
-
-
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-        sBoard(button.id);
-    });
+    if (pScore < 5 && cScore < 5)
+        button.addEventListener('click', () => {
+            sBoard(button.id);
+        });
 });
 
