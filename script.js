@@ -61,9 +61,8 @@ function sBoard(e) {
 };
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
-    if (pScore < 5 && cScore < 5)
-        button.addEventListener('click', () => {
-            sBoard(button.id);
-        });
+    button.addEventListener('click', () => {
+        if (pScore < 5 && cScore < 5) sBoard(button.id);
+    });
 });
 
